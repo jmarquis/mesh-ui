@@ -1,0 +1,8 @@
+{
+  "name": "mesh-ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jmarquis/mesh-ui.git",
+  "author": "Jeremy Marquis <jeremy@jeremymarquis.com>",
+  "license": "none"
+}
