@@ -4,5 +4,38 @@
   "main": "index.js",
   "repository": "git@github.com:jmarquis/mesh-ui.git",
   "author": "Jeremy Marquis <jeremy@jeremymarquis.com>",
-  "license": "none"
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --progress --colors",
+    "clean": "rm -rf build",
+    "rebuild": "npm run clean && npm run build",
+    "start": "./node_modules/.bin/webpack-dev-server --progress --content-base build/ --port 3000 --inline --hot --history-api-fallback"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
+    "css-loader": "^0.28.4",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.1",
+    "file-loader": "^0.11.1",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.4",
+    "postcss-loader": "^2.0.5",
+    "react-svg-loader": "^1.1.1",
+    "style-loader": "^0.18.1",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-hot-loader": "next",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "redux": "^3.6.0"
+  }
 }
