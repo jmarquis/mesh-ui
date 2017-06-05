@@ -14,6 +14,18 @@ html,
 body {
   box-sizing: border-box;
   overflow: hidden;
+  width: 100vw;
+  height: 100vh;
   font: 16px "open-sans", sans-serif;
   color: @rhino;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  > * {
+    flex: auto;
+  }
 }
