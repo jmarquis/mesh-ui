@@ -1,3 +1,15 @@
+@import "~colors";
+
 .Collection {
-  
+  display: flex;
+
+  > .NoteList {
+    flex: none;
+    width: 300px;
+    border-right: 1px solid @feather;
+  }
+
+  > .NoteEditor {
+    flex: auto;
+  }
 }
