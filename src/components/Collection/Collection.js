@@ -2,8 +2,8 @@ import "./Collection.less"
 
 import React, { Component } from "react"
 
-import NoteList from "NoteList"
-import NoteEditor from "NoteEditor"
+import NoteList from "components/NoteList"
+import NoteEditor from "components/NoteEditor"
 
 export default class Collection extends Component {
 

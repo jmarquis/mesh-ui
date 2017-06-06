@@ -1,11 +1,11 @@
-import "base"
+import "styles/base"
 
 import React from "react"
 import { render } from "react-dom"
 
 import { AppContainer } from "react-hot-loader"
 
-import App from "App"
+import App from "components/App"
 
 const mountPoint = document.getElementById("app")
 

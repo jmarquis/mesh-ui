@@ -2,7 +2,7 @@ import "./App.less"
 
 import React, { Component } from "react"
 
-import MenuLayout from "MenuLayout"
+import MenuLayout from "components/MenuLayout"
 
 export default class App extends Component {
 
