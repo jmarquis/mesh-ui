@@ -1,13 +1,13 @@
 import React, { Component } from "react"
 
-export default class ProjectMenu extends Component {
+export default class Menu extends Component {
 
   render() {
     return (
-      <div className="ProjectMenu">
+      <div className="Menu">
         menu
       </div>
     )
   }
-  
+
 }
