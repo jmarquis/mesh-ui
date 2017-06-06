@@ -9,10 +9,10 @@ export default class Collection extends Component {
 
   render() {
     return (
-      <div className="Collection">
+      <section className="Collection">
         <NoteList />
         <NoteEditor />
-      </div>
+      </section>
     )
   }
 

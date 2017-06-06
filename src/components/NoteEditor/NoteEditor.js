@@ -4,9 +4,9 @@ export default class NoteEditor extends Component {
 
   render() {
     return (
-      <div className="NoteEditor">
+      <section className="NoteEditor">
         note editor
-      </div>
+      </section>
     )
   }
 
