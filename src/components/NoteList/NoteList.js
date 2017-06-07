@@ -1,30 +1,27 @@
 import "./NoteList.less"
 
 import React, { Component } from "react"
-import classNames from "classnames"
 import autobind from "autobind-decorator"
 
-import SearchIcon from "icons/magnifying-glass"
+import SearchField from "components/SearchField"
 
 @autobind
 export default class NoteList extends Component {
 
   state = {
-    searchFocused: false
+    searchFieldValue: ""
   }
 
   render() {
-    const { searchFocused } = this.state
+    const { searchFieldValue } = this.state
     return (
       <section className="NoteList">
 
-        <header className={classNames({ focused: searchFocused })}>
-          <SearchIcon />
-          <input
-            type="text"
-            placeholder="Search"
-            onFocus={this.handleSearchFocus}
-            onBlur={this.handleSearchBlur}
+        <header>
+          <SearchField
+            value={searchFieldValue}
+            onChange={this.handleSearchFieldValueChange}
+            onClear={this.handleSearchFieldClear}
           />
           <button type="button">+</button>
         </header>
@@ -54,15 +51,15 @@ export default class NoteList extends Component {
     )
   }
 
-  handleSearchFocus() {
+  handleSearchFieldValueChange(event) {
     this.setState({
-      searchFocused: true
+      searchFieldValue: event.target.value
     })
   }
 
-  handleSearchBlur() {
+  handleSearchFieldClear() {
     this.setState({
-      searchFocused: false
+      searchFieldValue: ""
     })
   }
 
