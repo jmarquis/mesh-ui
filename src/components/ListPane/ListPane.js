@@ -5,6 +5,8 @@ import autobind from "autobind-decorator"
 
 import SearchField from "components/SearchField"
 
+import AddIcon from "icons/plus"
+
 @autobind
 export default class ListPane extends Component {
 
@@ -23,7 +25,7 @@ export default class ListPane extends Component {
             onChange={this.handleSearchFieldValueChange}
             onClear={this.handleSearchFieldClear}
           />
-          <button type="button">+</button>
+          <button type="button"><AddIcon /></button>
         </header>
 
         <ol>
