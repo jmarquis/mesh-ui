@@ -3,7 +3,7 @@ import "./MenuLayout.less"
 import React, { Component } from "react"
 
 import Menu from "components/Menu"
-import Collection from "components/Collection"
+import List from "components/List"
 
 export default class MenuLayout extends Component {
 
@@ -11,7 +11,7 @@ export default class MenuLayout extends Component {
     return (
       <div className="MenuLayout">
         <Menu />
-        <Collection id={1} />
+        <List id={1} />
       </div>
     )
   }

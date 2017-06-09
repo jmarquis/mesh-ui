@@ -1,4 +1,4 @@
-import "./NoteList.less"
+import "./ListPane.less"
 
 import React, { Component } from "react"
 import autobind from "autobind-decorator"
@@ -6,7 +6,7 @@ import autobind from "autobind-decorator"
 import SearchField from "components/SearchField"
 
 @autobind
-export default class NoteList extends Component {
+export default class ListPane extends Component {
 
   state = {
     searchFieldValue: ""
@@ -15,7 +15,7 @@ export default class NoteList extends Component {
   render() {
     const { searchFieldValue } = this.state
     return (
-      <section className="NoteList">
+      <section className="ListPane">
 
         <header>
           <SearchField

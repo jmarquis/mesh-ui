@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 
-export default class NoteEditor extends Component {
+export default class NotePane extends Component {
 
   render() {
     return (
-      <section className="NoteEditor">
+      <section className="NotePane">
         note editor
       </section>
     )

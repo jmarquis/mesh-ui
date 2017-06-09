@@ -20,7 +20,7 @@ export default class SearchField extends Component {
   }
 
   render() {
-    const { value } = this.props
+    const { value, onClear, ...otherProps } = this.props
     const { focused } = this.state
     const hasValue = !!value
     return (
@@ -31,7 +31,7 @@ export default class SearchField extends Component {
           ref={input => this.input = input}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
-          {...this.props}
+          {...otherProps}
         />
         <SearchIcon />
         <button type="button" onClick={this.handleClearClick}><ClearIcon /></button>
