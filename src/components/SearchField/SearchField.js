@@ -22,13 +22,13 @@ export default class SearchField extends Component {
   render() {
     const { value, onClear, ...otherProps } = this.props
     const { focused } = this.state
-    const hasValue = !!value
     return (
-      <div className={classNames("SearchField", { focused, hasValue })} onClick={this.handleClick}>
+      <div className={classNames("SearchField", { focused, hasValue: !!value })} onClick={this.handleClick}>
         <input
           type="text"
           placeholder="Search"
           ref={input => this.input = input}
+          value={value}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           {...otherProps}
