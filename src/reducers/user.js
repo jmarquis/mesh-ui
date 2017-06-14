@@ -1,3 +1,11 @@
 export function user(state = null, action) {
-  return state
+  switch (action.type) {
+
+    case "UPDATE_USER":
+      return action.user
+
+    default:
+      return state
+
+  }
 }

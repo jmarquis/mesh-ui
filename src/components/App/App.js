@@ -1,19 +1,50 @@
 import "./App.less"
 
 import React, { Component } from "react"
+import PropTypes from "prop-types"
 import { Route, Switch } from "react-router-dom"
+import { connect } from "react-redux"
+
+import auth from "etc/auth"
 
 import Space from "components/Space"
 
+import { updateUser } from "actions"
+
+@connect(state => {
+  const { user } = state
+  return { user }
+})
 export default class App extends Component {
 
+  static propTypes = {
+    dispatch: PropTypes.func,
+    user: PropTypes.any
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props
+    auth.onAuthStateChanged(user => dispatch(updateUser(user)))
+  }
+
   render() {
+    const { user } = this.props
     return (
       <div className="App">
-        <Switch>
-          <Route exact path="/" render={() => <div>auth</div>} />
-          <Route path="/:spaceId" component={Space} />
-        </Switch>
+        {(() => {
+          if (user) {
+            return (
+              <Switch>
+                <Route exact path="/" render={() => <div>auth</div>} />
+                <Route path="/:spaceId" component={Space} />
+              </Switch>
+            )
+          } else {
+            return (
+              <div>auth</div>
+            )
+          }
+        })()}
       </div>
     )
   }
