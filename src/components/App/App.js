@@ -1,25 +1,19 @@
 import "./App.less"
 
 import React, { Component } from "react"
+import { Route, Switch } from "react-router-dom"
 
-import MenuLayout from "components/MenuLayout"
+import Space from "components/Space"
 
 export default class App extends Component {
 
   render() {
     return (
       <div className="App">
-        {(() => {
-          if (true) { // authenticated
-            return (
-              <MenuLayout id="1" />
-            )
-          } else {
-            return (
-              <div>authentication</div>
-            )
-          }
-        })()}
+        <Switch>
+          <Route exact path="/" render={() => <div>auth</div>} />
+          <Route path="/:spaceId" component={Space} />
+        </Switch>
       </div>
     )
   }
