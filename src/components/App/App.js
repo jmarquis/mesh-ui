@@ -8,6 +8,7 @@ import { connect } from "react-redux"
 import auth from "etc/auth"
 
 import Space from "components/Space"
+import Authentication from "components/Authentication"
 
 import { updateUser } from "actions"
 
@@ -24,7 +25,13 @@ export default class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    auth.onAuthStateChanged(user => dispatch(updateUser(user)))
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        dispatch(updateUser(user))
+      } else {
+        dispatch(updateUser(false))
+      }
+    })
   }
 
   render() {
@@ -39,10 +46,10 @@ export default class App extends Component {
                 <Route path="/:spaceId" component={Space} />
               </Switch>
             )
+          } else if (user === false) {
+            return <Authentication />
           } else {
-            return (
-              <div>auth</div>
-            )
+            return <div>loading</div>
           }
         })()}
       </div>
