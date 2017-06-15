@@ -2,4 +2,61 @@
 
 .Authentication {
   background: linear-gradient(135deg, @sapphire, @rhino);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > form {
+    width: 300px;
+    position: relative;
+    top: -3%;
+    margin: 0;
+
+    > figure {
+      margin: 0;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    > button {
+      appearance: none;
+      width: 100%;
+      height: 48px;
+      margin: 16px 0 0;
+      background-color: @azure;
+      border: 0;
+      border-radius: 3px;
+      padding: 0 16px;
+      font-weight: bold;
+      color: @alabaster;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: @azure-light;
+      }
+
+      &:active {
+        background-color: @azure-dark;
+      }
+    }
+
+    > p {
+      margin: 24px 16px;
+      color: @alabaster;
+      font-size: 14px;
+      text-align: center;
+
+      > a {
+        color: @alabaster;
+        font-weight: bold;
+
+        &:hover {
+          color: @white;
+        }
+      }
+    }
+  }
 }

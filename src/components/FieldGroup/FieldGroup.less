@@ -1,0 +1,26 @@
+.FieldGroup {
+  display: flex;
+  flex-flow: column nowrap;
+
+  > .Field {
+    flex: none;
+    margin-top: 0;
+
+    & + .Field {
+      margin-top: -1px;
+
+      > input {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+
+    &:not(:last-child) {
+
+      > input {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+}

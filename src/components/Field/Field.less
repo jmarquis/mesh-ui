@@ -1,0 +1,36 @@
+@import "~styles/colors";
+
+.Field {
+  width: 300px;
+  position: relative;
+
+  > label {
+    position: absolute;
+    top: 16px;
+    right: 100%;
+    margin-right: 16px;
+    color: @cumulus;
+    white-space: nowrap;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+
+  > input {
+    width: 100%;
+    height: 48px;
+    margin: 0;
+    border: 1px solid @cumulus;
+    border-radius: 3px;
+    background-color: @alabaster;
+    position: relative;
+    padding: 0 16px 2px;
+
+    &:focus {
+      // border-color: @azure;
+      background-color: @white;
+      z-index: 3;
+    }
+  }
+}

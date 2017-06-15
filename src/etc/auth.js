@@ -1,3 +1,9 @@
 import app from "etc/firebase"
 
-export default app.auth()
+const auth = app.auth()
+
+export function authenticate(emailAddress, password) {
+  return auth.signInWithEmailAndPassword(emailAddress, password)
+}
+
+export default auth
