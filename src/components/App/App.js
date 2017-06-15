@@ -2,6 +2,7 @@ import "./App.less"
 
 import React, { Component } from "react"
 import PropTypes from "prop-types"
+import { withRouter } from "react-router"
 import { Route, Switch } from "react-router-dom"
 import { connect } from "react-redux"
 
@@ -12,6 +13,7 @@ import Authentication from "components/Authentication"
 
 import { updateUser } from "actions"
 
+@withRouter
 @connect(state => {
   const { user } = state
   return { user }

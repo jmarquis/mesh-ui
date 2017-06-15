@@ -12,7 +12,7 @@ module.exports = {
     "./src/index.html"
   ],
 
-  devtool: "cheap-module-eval-source-map",
+  devtool: "source-map",
 
   resolve: {
 

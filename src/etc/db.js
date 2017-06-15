@@ -1,3 +1,3 @@
 import app from "etc/firebase"
 
-export default app.db()
+export default app.database()
