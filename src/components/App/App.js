@@ -11,7 +11,7 @@ import auth from "etc/auth"
 import Space from "components/Space"
 import Authentication from "components/Authentication"
 
-import { updateUser } from "actions"
+import { fetchUser } from "actions"
 
 @withRouter
 @connect(state => {
@@ -29,9 +29,9 @@ export default class App extends Component {
     const { dispatch } = this.props
     auth.onAuthStateChanged(user => {
       if (user) {
-        dispatch(updateUser(user))
+        dispatch(fetchUser(user))
       } else {
-        dispatch(updateUser(false))
+        dispatch(fetchUser(false))
       }
     })
   }

@@ -30,16 +30,10 @@ import CaretIcon from "icons/caret-down"
 export default class SpaceSelector extends Component {
 
   static propTypes = {
-    dispatch: PropTypes.func,
     match: PropTypes.object,
     history: PropTypes.object,
     spaces: PropTypes.object,
     spacesArray: PropTypes.array
-  }
-
-  componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(listenForSpaceChanges())
   }
 
   render() {

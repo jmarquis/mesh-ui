@@ -14,10 +14,31 @@ export function updateSpaces(spaces) {
   }
 }
 
-export function listenForSpaceChanges() {
+export function updateSpace(spaceId, spaceData) {
+  return {
+    type: "UPDATE_SPACE",
+    spaceId,
+    spaceData
+  }
+}
+
+export function fetchSpaces() {
+  return (dispatch, getState) => {
+    const spaceIds = Object.keys(getState().spaces)
+    spaceIds.forEach(spaceId => {
+      db.ref("spaces").child(spaceId).once("value", snapshot => {
+        dispatch(updateSpace(spaceId, snapshot.val()))
+      })
+    })
+  }
+}
+
+export function fetchUser(user) {
   return dispatch => {
-    db.ref("spaces").on("value", snapshot => {
-      dispatch(updateSpaces(snapshot.val()))
+    db.ref("users").child(user.uid).once("value", snapshot => {
+      dispatch(updateUser(snapshot.val()))
+      dispatch(updateSpaces(snapshot.child("spaces").val()))
+      dispatch(fetchSpaces())
     })
   }
 }
