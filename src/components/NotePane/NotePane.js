@@ -1,3 +1,5 @@
+import "./NotePane.less"
+
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 
@@ -25,6 +27,7 @@ export default class NotePane extends Component {
     if (!note) return null
     return (
       <section className="NotePane">
+        <header>{note.title}</header>
         {note.body}
       </section>
     )
