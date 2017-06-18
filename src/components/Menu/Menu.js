@@ -6,21 +6,26 @@ import { withRouter } from "react-router"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 
-import { listenForListChanges } from "actions"
-
 import SpaceSelector from "components/SpaceSelector"
 
 import ListIcon from "icons/list"
 
 @withRouter
-@connect(state => {
+@connect((state, props) => {
 
-  const { lists } = state
+  const { spaces, lists } = state
+  const { match: { params: { spaceId }}} = props
+  const currentSpace = spaces[spaceId]
 
-  const listsArray = Object.keys(lists).map(listId => ({
-    id: listId,
-    ...lists[listId]
-  }))
+  const listsArray = Object.keys(lists).reduce((listsArray, listId) => {
+    if (listId in currentSpace.lists) {
+      listsArray.push({
+        id: listId,
+        ...lists[listId]
+      })
+    }
+    return listsArray
+  }, [])
 
   return {
     listsArray
@@ -30,14 +35,8 @@ import ListIcon from "icons/list"
 export default class Menu extends Component {
 
   static propTypes = {
-    dispatch: PropTypes.func,
     match: PropTypes.object,
     listsArray: PropTypes.array
-  }
-
-  componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(listenForListChanges())
   }
 
   render() {

@@ -2,6 +2,10 @@ module.exports = {
 
   parser: "babel-eslint",
 
+  parserOptions: {
+    sourceType: "module"
+  },
+
   plugins: [
     "react"
   ],
@@ -19,7 +23,9 @@ module.exports = {
 
   rules: {
 
-    indent: ["error", 2],
+    indent: ["error", 2, {
+      SwitchCase: 1
+    }],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "never"]

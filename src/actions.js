@@ -1,4 +1,5 @@
 import db from "etc/db"
+import { log } from "etc/logger"
 
 export function updateUser(user) {
   return {
@@ -22,14 +23,44 @@ export function updateSpace(spaceId, spaceData) {
   }
 }
 
-export function fetchSpaces() {
+export function fetchSpaceData() {
+  log("fetching space data")
   return (dispatch, getState) => {
     const spaceIds = Object.keys(getState().spaces)
     spaceIds.forEach(spaceId => {
+      log("fetching space data for spaceId:", spaceId)
       db.ref("spaces").child(spaceId).once("value", snapshot => {
-        dispatch(updateSpace(spaceId, snapshot.val()))
+        log(`new space data for ${spaceId}:`, snapshot.val())
+        const lists = snapshot.child("lists").val()
+        dispatch(updateSpace(spaceId, {
+          ...snapshot.val(),
+          lists
+        }))
+        dispatch(fetchListData(Object.keys(lists)))
       })
     })
+  }
+}
+
+export function fetchListData(listIds) {
+  log("fetching list data for:", listIds)
+  return dispatch => {
+    listIds.forEach(listId => {
+      log("fetching list data for", listId)
+      db.ref("lists").child(listId).once("value", snapshot => {
+        const listData = snapshot.val()
+        log(`new list data for ${listId}:`, listData)
+        dispatch(updateList(listId, listData))
+      })
+    })
+  }
+}
+
+export function updateList(listId, listData) {
+  return {
+    type: "UPDATE_LIST",
+    listId,
+    listData
   }
 }
 
@@ -38,22 +69,7 @@ export function fetchUser(user) {
     db.ref("users").child(user.uid).once("value", snapshot => {
       dispatch(updateUser(snapshot.val()))
       dispatch(updateSpaces(snapshot.child("spaces").val()))
-      dispatch(fetchSpaces())
-    })
-  }
-}
-
-export function updateLists(lists) {
-  return {
-    type: "UPDATE_LISTS",
-    lists
-  }
-}
-
-export function listenForListChanges() {
-  return dispatch => {
-    db.ref("lists").on("value", snapshot => {
-      dispatch(updateLists(snapshot.val()))
+      dispatch(fetchSpaceData())
     })
   }
 }

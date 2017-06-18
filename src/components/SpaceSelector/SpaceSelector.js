@@ -6,8 +6,6 @@ import { withRouter } from "react-router"
 import autobind from "autobind-decorator"
 import { connect } from "react-redux"
 
-import { listenForSpaceChanges } from "actions"
-
 import CaretIcon from "icons/caret-down"
 
 @withRouter
@@ -53,7 +51,6 @@ export default class SpaceSelector extends Component {
 
   handleChange(event) {
     const { history } = this.props
-    console.log("WOO", event.target.value)
     history.push(`/${event.target.value}`)
   }
 
