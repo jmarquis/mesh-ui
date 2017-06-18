@@ -30,10 +30,11 @@ export function fetchSpaceData() {
     spaceIds.forEach(spaceId => {
       log("fetching space data for spaceId:", spaceId)
       db.ref("spaces").child(spaceId).once("value", snapshot => {
-        log(`new space data for ${spaceId}:`, snapshot.val())
+        const spaceData = snapshot.val()
+        log(`new space data for ${spaceId}:`, spaceData)
         const lists = snapshot.child("lists").val()
         dispatch(updateSpace(spaceId, {
-          ...snapshot.val(),
+          ...spaceData,
           lists
         }))
         dispatch(fetchListData(Object.keys(lists)))
@@ -50,7 +51,12 @@ export function fetchListData(listIds) {
       db.ref("lists").child(listId).once("value", snapshot => {
         const listData = snapshot.val()
         log(`new list data for ${listId}:`, listData)
-        dispatch(updateList(listId, listData))
+        const notes = snapshot.child("notes").val()
+        dispatch(updateList(listId, {
+          ...listData,
+          notes
+        }))
+        dispatch(fetchNoteData(Object.keys(notes)))
       })
     })
   }
@@ -61,6 +67,28 @@ export function updateList(listId, listData) {
     type: "UPDATE_LIST",
     listId,
     listData
+  }
+}
+
+export function fetchNoteData(noteIds) {
+  log("fetching note data for:", noteIds)
+  return dispatch => {
+    noteIds.forEach(noteId => {
+      log("fetching note data for", noteId)
+      db.ref("notes").child(noteId).once("value", snapshot => {
+        const noteData = snapshot.val()
+        log(`new note data for ${noteId}`, noteData)
+        dispatch(updateNote(noteId, noteData))
+      })
+    })
+  }
+}
+
+export function updateNote(noteId, noteData) {
+  return {
+    type: "UPDATE_NOTE",
+    noteId,
+    noteData
   }
 }
 

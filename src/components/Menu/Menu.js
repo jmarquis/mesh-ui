@@ -14,7 +14,7 @@ import ListIcon from "icons/list"
 @connect((state, props) => {
 
   const { spaces, lists } = state
-  const { match: { params: { spaceId }}} = props
+  const { match: { params: { spaceId } } } = props
   const currentSpace = spaces[spaceId]
 
   const listsArray = Object.keys(lists).reduce((listsArray, listId) => {
