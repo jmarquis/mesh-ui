@@ -14,9 +14,10 @@ import Authentication from "components/Authentication"
 import { fetchUser } from "actions"
 
 @withRouter
-@connect(state => {
+@connect((state, props) => {
   const { user } = state
-  return { user }
+  const { match: { location } } = props
+  return { user, location }
 })
 export default class App extends Component {
 
