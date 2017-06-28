@@ -6,6 +6,8 @@ import { connect } from "react-redux"
 import autobind from "autobind-decorator"
 import { Editor, EditorState } from "draft-js"
 
+import { updateNote } from "actions"
+
 @connect((state, props) => {
 
   const { notes } = state
@@ -13,6 +15,7 @@ import { Editor, EditorState } from "draft-js"
   const note = notes[noteId]
 
   return {
+    noteId,
     note
   }
 
@@ -21,11 +24,9 @@ import { Editor, EditorState } from "draft-js"
 export default class NotePane extends Component {
 
   static propTypes = {
+    dispatch: PropTypes.func,
+    noteId: PropTypes.number,
     note: PropTypes.object
-  }
-
-  state = {
-    editorState: EditorState.createEmpty()
   }
 
   render() {
@@ -35,13 +36,14 @@ export default class NotePane extends Component {
       <section className="NotePane">
         {/* <header>{note.title}</header>
         {note.body} */}
-        <Editor editorState={this.state.editorState} onChange={this.onChange} />
+        <Editor editorState={note.editorState || EditorState.createEmpty()} onChange={this.onChange} />
       </section>
     )
   }
 
   onChange(editorState) {
-    this.setState({ editorState })
+    const { dispatch, noteId } = this.props
+    dispatch(updateNote(noteId, { editorState }))
   }
 
 }
