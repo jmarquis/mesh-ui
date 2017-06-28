@@ -1,9 +1,26 @@
 .NotePane {
-  padding: 24px 32px;
+  overflow: auto;
+  display: flex;
 
   > header {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 7px;
+  }
+
+  > .DraftEditor-root {
+    width: 100%;
+    min-height: 100vh;
+
+    > .DraftEditor-editorContainer {
+      width: 100%;
+      min-height: 100vh;
+
+      > .public-DraftEditor-content {
+        width: 100%;
+        min-height: 100vh;
+        padding: 24px 32px;
+      }
+    }
   }
 }
