@@ -30,11 +30,11 @@
     "postcss-loader": "^2.0.5",
     "react-svg-loader": "^1.1.1",
     "style-loader": "^0.18.1",
-    "webpack": "^2.6.1",
+    "webpack": "^3.0.0",
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "autobind-decorator": "^1.4.1",
+    "autobind-decorator": "^2.0.0",
     "classnames": "^2.2.5",
     "draft-js": "^0.10.1",
     "firebase": "^4.1.2",
